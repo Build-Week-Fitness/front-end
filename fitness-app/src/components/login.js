@@ -16,7 +16,7 @@ export default function Login() {
       <div className="form-container">
         <form className="login-form">
           <label>
-            Username:
+            Username
             <input
               type="text"
               name="username"
@@ -25,7 +25,7 @@ export default function Login() {
             />
           </label>
           <label>
-            Password:
+            Password
             <input
               type="text"
               name="password"

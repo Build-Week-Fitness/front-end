@@ -16,6 +16,7 @@ function App() {
           </div>
         </nav>
       </header>
+
       <Switch>
 
         <Route path="/login">
@@ -29,6 +30,7 @@ function App() {
         <Route path="/">
           <Home />
         </Route>
+
       </Switch>
     </div>
   );
