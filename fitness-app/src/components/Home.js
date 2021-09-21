@@ -5,9 +5,8 @@ import Registration from "./Registration";
 export default function Home() {
   return (
     <>
-      <h1>Home Page</h1>
 
-      <Link to="/login">
+      {/* <Link to="/login">
         <button>Log In</button>
       </Link>
       <Route path="/login">
@@ -20,7 +19,7 @@ export default function Home() {
       </Link>
       <Route path="/register">
         <Registration />
-      </Route>
+      </Route> */}
     </>
   );
 }

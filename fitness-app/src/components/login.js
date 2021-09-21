@@ -1,7 +1,15 @@
+import { Link } from 'react-router-dom';
 export default function Login() {
   return (
     <>
-      <h1>Login Form</h1>
+      <h2>Login to your account</h2>
+      <p>Do not have an account?
+        <Link to="/register">
+          <button type='button' className='switch'>
+            Create account
+          </button>
+        </Link>
+      </p>
       <form>
         <label>
           Username:
