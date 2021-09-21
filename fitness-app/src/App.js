@@ -1,8 +1,9 @@
 import "./App.css";
 import { Link, Route, Switch } from "react-router-dom";
 import { connect } from 'react-redux';
-import ProtectedRoute from './components/ProtectedRoute';
+import ProtectedUsersRoute from './components/ProtectedUsersRoute';
 import Classes from './components/Classes';
+import ClassDetails from './components/ClassDetails';
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import Registration from "./components/Registration";
@@ -16,7 +17,7 @@ function App(props) {
         <nav>
           <div className="nav-links">
             <Link to="/">Home</Link>
-            <Link to="/classes">Classes</Link>
+            <Link to="/class">Classes</Link>
             {
               props.isLogin ?
                 <Link to="/logout">Logout</Link> :
@@ -28,7 +29,9 @@ function App(props) {
 
       <Switch>
 
-        <ProtectedRoute path="/classes" component={Classes} />
+        <ProtectedUsersRoute path="/class/:id" component={ClassDetails} />
+
+        <ProtectedUsersRoute path="/class" component={Classes} />
 
         <Route path="/login" component={Login} />
 

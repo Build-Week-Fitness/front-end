@@ -1,18 +1,19 @@
 import React from 'react';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const Class = (props) => {
+    const { url } = useRouteMatch();
 
     return (
         <div className="classes-list">
             {props.classes ? props.classes.map(item => (
                 <div key={item.id} className="class-item">
-                    <h2>Name: {item.name}</h2>
-                    <p>Instructor: {item.instructor_name}</p>
-                    <p>Type: {item.type}</p>
-                    <p>Intensity: {item.intensity}</p>
-                    <p>Location: {item.location}</p>
-                    <p>Max size: {item.max_size}</p>
+                    <Link to={`${url}/${item.id}`}>
+                        <h2>Name: <span>{item.name}</span></h2>
+                    </Link>
+                    <p>Instructor: <span>{item.instructor_name}</span></p>
+                    <p>Type: <span>{item.type}</span></p>
                     <p>Date: {item.date}</p>
                 </div>
             )) :

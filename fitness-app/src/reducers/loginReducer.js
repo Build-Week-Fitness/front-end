@@ -1,7 +1,7 @@
 import { LOGIN, LOGOUT } from "../actions";
 
 let initialState = {
-    isLogin: false
+    isLogin: false,
 }
 
 if (localStorage.getItem("token")) {

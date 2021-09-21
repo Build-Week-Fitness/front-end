@@ -11,6 +11,7 @@ const initialValues = {
 
 const Login = (props) => {
   const [user, setUser] = useState(initialValues);
+  const [error, setError] = useState('');
 
   const handleChange = e => {
     setUser({
@@ -23,13 +24,15 @@ const Login = (props) => {
     e.preventDefault();
     axios.post("https://anytime-fitness.herokuapp.com/api/auth/login", user)
       .then(res => {
-        console.log("axios login response: ", res);
+        setError('');
         localStorage.setItem("token", res.data.token);
         props.login();
-        props.history.push('/classes');
+        props.history.push('/class');
       })
       .catch(err => {
         console.log(err);
+        setError('Login failed');
+        setUser(initialValues);
       })
   }
 
@@ -52,6 +55,7 @@ const Login = (props) => {
             <input
               type="text"
               name="username"
+              value={user.username}
               placeholder="Enter Username"
               max-characters="14"
               onChange={handleChange}
@@ -62,11 +66,13 @@ const Login = (props) => {
             <input
               type="password"
               name="password"
+              value={user.password}
               placeholder="Enter Password"
               max-characters="14"
               onChange={handleChange}
             />
           </label>
+          {error && <p className="error-message">{error}</p>}
           <button id="submit-login" type="submit">Log In</button>
         </form>
       </div>
