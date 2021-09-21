@@ -156,3 +156,54 @@ h1 {
   letter-spacing: 1px;
   margin-top: 1rem;
 }
+
+.error-message {
+  font-size: 1rem;
+  color: red;
+}
+
+/* Classes */
+
+.classes-wrapper h2 {
+  font-size: 1.2rem;
+  margin: 2rem;
+}
+
+/* Class */
+
+.class-wrapper {
+  display: flex; 
+}
+
+.class-item {
+  width: 40%;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border: 3px #9ACD32 dotted;
+  border-radius: 20px;
+}
+
+.class-item p {
+  font-size: 1rem;
+  margin: 0.2rem;
+}
+.class-item span {
+  text-transform: capitalize;
+}
+
+/* Class Details */
+
+.class-details-wrapper h2 {
+  font-size: 1.5rem;
+  margin: 2rem;
+}
+
+.class-details-wrapper p {
+  font-size: 1rem;
+  margin: .5rem;
+}
+
+.class-details-wrapper span {
+  text-transform: capitalize;
+}

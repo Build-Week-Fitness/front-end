@@ -1,6 +1,47 @@
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { login } from '../actions';
 
-export default function Login() {
+const initialValues = {
+  username: "",
+  password: "",
+}
+
+const Login = (props) => {
+  const [user, setUser] = useState(initialValues);
+  const [error, setError] = useState('');
+
+  const handleChange = e => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const login = e => {
+    e.preventDefault();
+    axios.post("https://anytime-fitness.herokuapp.com/api/auth/login", user)
+      .then(res => {
+        console.log(res)
+        setError('');
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("role", res.data.role);
+        props.login(res.data.role);
+        if (res.data.role === "1") {
+          props.history.push('/class-admin');
+        } else {
+          props.history.push('/class');
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        setError('Login failed');
+        setUser(initialValues);
+      })
+  }
+
   return (
     <div className="form-wrapper">
       <div className="form-text-container">
@@ -14,28 +55,35 @@ export default function Login() {
         </p>
       </div>
       <div className="form-container">
-        <form className="login-form">
+        <form className="login-form" onSubmit={login}>
           <label>
             Username
             <input
               type="text"
               name="username"
+              value={user.username}
               placeholder="Enter Username"
               max-characters="14"
+              onChange={handleChange}
             />
           </label>
           <label>
             Password
             <input
-              type="text"
+              type="password"
               name="password"
+              value={user.password}
               placeholder="Enter Password"
               max-characters="14"
+              onChange={handleChange}
             />
           </label>
+          {error && <p className="error-message">{error}</p>}
           <button id="submit-login" type="submit">Log In</button>
         </form>
       </div>
     </div>
   );
 }
+
+export default connect(null, { login })(Login);

@@ -1,10 +1,19 @@
 import "./App.css";
-import Home from "./components/Home";
-import Login from "./components/login";
 import { Link, Route, Switch } from "react-router-dom";
+import { connect } from 'react-redux';
+import ProtectedUsersRoute from './components/ProtectedUsersRoute';
+import Classes from './components/Classes';
+import ClassDetails from './components/ClassDetails';
+import Login from "./components/Login";
+import Logout from "./components/Logout";
 import Registration from "./components/Registration";
+import Home from "./components/Home";
+import ProtectedInstructorsRoute from "./components/ProtectedInstructorsRoute";
+import ClassesAdmin from "./components/ClassesAdmin";
+import EditForm from "./components/EditForm";
+import AddClass from "./components/AddClass";
 
-function App() {
+function App(props) {
   return (
     <div className="App">
       <header className="App-header">
@@ -12,28 +21,53 @@ function App() {
         <nav>
           <div className="nav-links">
             <Link to="/">Home</Link>
-            <Link to="/login">Login</Link>
+            {
+              localStorage.getItem("role") === '0' && <Link to="/class">Classes</Link>
+            }
+            {
+              localStorage.getItem("role") === '1' && <Link to="/class-admin">View classes</Link>
+            }
+            {/* {
+              localStorage.getItem("role") === '1' && <Link to="/add-class">Add a class</Link>
+            } */}
+            {
+              props.isLogin ?
+                <Link to="/logout">Logout</Link> :
+                <Link to="/login">Login</Link>
+            }
           </div>
         </nav>
       </header>
 
       <Switch>
 
-        <Route path="/login">
-          <Login />
-        </Route>
+        <ProtectedUsersRoute path="/class/:id" component={ClassDetails} />
 
-        <Route path="/register">
-          <Registration />
-        </Route>
+        <ProtectedUsersRoute path="/class" component={Classes} />
 
-        <Route path="/">
-          <Home />
-        </Route>
+        <ProtectedInstructorsRoute path="/add-class" component={AddClass} />
+
+        <ProtectedInstructorsRoute path="/class-admin/edit-form/:id" component={EditForm} />
+
+        <ProtectedInstructorsRoute path="/class-admin" component={ClassesAdmin} />
+
+        <Route path="/login" component={Login} />
+
+        <Route path="/logout" component={Logout} />
+
+        <Route path="/register" component={Registration} />
+
+        <Route path="/" component={Home} />
 
       </Switch>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return ({
+    isLogin: state.loginReducer.isLogin,
+  })
+}
+
+export default connect(mapStateToProps)(App);
