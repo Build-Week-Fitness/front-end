@@ -1,10 +1,14 @@
 import "./App.css";
-import Home from "./components/Home";
-import Login from "./components/Login";
 import { Link, Route, Switch } from "react-router-dom";
+import { connect } from 'react-redux';
+import ProtectedRoute from './components/ProtectedRoute';
+import Classes from './components/Classes';
+import Login from "./components/Login";
+import Logout from "./components/Logout";
 import Registration from "./components/Registration";
+import Home from "./components/Home";
 
-function App() {
+function App(props) {
   return (
     <div className="App">
       <header className="App-header">
@@ -12,28 +16,37 @@ function App() {
         <nav>
           <div className="nav-links">
             <Link to="/">Home</Link>
-            <Link to="/login">Login</Link>
+            {
+              props.isLogin ?
+                <Link to="/logout">Logout</Link> :
+                <Link to="/login">Login</Link>
+            }
+            <Link to="/classes">Classes</Link>
           </div>
         </nav>
       </header>
 
       <Switch>
 
-        <Route path="/login">
-          <Login />
-        </Route>
+        <ProtectedRoute path="/classes" component={Classes} />
 
-        <Route path="/register">
-          <Registration />
-        </Route>
+        <Route path="/login" component={Login} />
 
-        <Route path="/">
-          <Home />
-        </Route>
+        <Route path="/logout" component={Logout} />
+
+        <Route path="/register" component={Registration} />
+
+        <Route path="/" component={Home} />
 
       </Switch>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return ({
+    isLogin: state.loginReducer.isLogin
+  })
+}
+
+export default connect(mapStateToProps)(App);

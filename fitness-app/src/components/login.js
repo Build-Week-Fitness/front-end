@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { login } from '../actions';
 
 const initialValues = {
   username: "",
   password: "",
 }
 
-export default function Login() {
+const Login = (props) => {
   const [user, setUser] = useState(initialValues);
 
   const handleChange = e => {
@@ -23,6 +25,8 @@ export default function Login() {
       .then(res => {
         console.log("axios login response: ", res);
         localStorage.setItem("token", res.data.token);
+        props.login();
+        props.history.push('/classes');
       })
       .catch(err => {
         console.log(err);
@@ -69,3 +73,5 @@ export default function Login() {
     </div>
   );
 }
+
+export default connect(null, { login })(Login);

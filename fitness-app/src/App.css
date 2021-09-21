@@ -156,3 +156,10 @@ h1 {
   letter-spacing: 1px;
   margin-top: 1rem;
 }
+
+/* Classes */
+
+.classes-container p {
+  font-size: 1.2rem;
+  margin: 2rem;
+}
