@@ -24,10 +24,16 @@ const Login = (props) => {
     e.preventDefault();
     axios.post("https://anytime-fitness.herokuapp.com/api/auth/login", user)
       .then(res => {
+        console.log(res)
         setError('');
         localStorage.setItem("token", res.data.token);
-        props.login();
-        props.history.push('/class');
+        localStorage.setItem("role", res.data.role);
+        props.login(res.data.role);
+        if (res.data.role === "1") {
+          props.history.push('/class-admin');
+        } else {
+          props.history.push('/class');
+        }
       })
       .catch(err => {
         console.log(err);

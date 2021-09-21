@@ -2,6 +2,7 @@ import { LOGIN, LOGOUT } from "../actions";
 
 let initialState = {
     isLogin: false,
+    isAdmin: false,
 }
 
 if (localStorage.getItem("token")) {
@@ -16,7 +17,8 @@ export const loginReducer = (state = initialState, action) => {
         case LOGIN:
             return {
                 ...state,
-                isLogin: action.payload
+                isLogin: true,
+                isAdmin: action.payload
             };
         case LOGOUT:
             console.log("LOGOUT ACTION");

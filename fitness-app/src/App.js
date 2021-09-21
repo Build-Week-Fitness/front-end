@@ -8,6 +8,8 @@ import Login from "./components/Login";
 import Logout from "./components/Logout";
 import Registration from "./components/Registration";
 import Home from "./components/Home";
+import ProtectedInstructorsRoute from "./components/ProtectedInstructorsRoute";
+import ClassesAdmin from "./components/ClassesAdmin";
 
 function App(props) {
   return (
@@ -32,6 +34,8 @@ function App(props) {
         <ProtectedUsersRoute path="/class/:id" component={ClassDetails} />
 
         <ProtectedUsersRoute path="/class" component={Classes} />
+
+        <ProtectedInstructorsRoute path="/class-admin" component={ClassesAdmin} />
 
         <Route path="/login" component={Login} />
 

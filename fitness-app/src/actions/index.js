@@ -19,8 +19,8 @@ export const getClasses = () => dispatch => {
         })
 }
 
-export const login = () => {
-    return ({ type: LOGIN, payload: true });
+export const login = (role) => {
+    return ({ type: LOGIN, payload: role });
 }
 
 export const logout = () => {

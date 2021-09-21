@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { login } from '../actions';
 
 const initialValues = {
   name: "",
@@ -10,7 +12,7 @@ const initialValues = {
   role: 0,
 }
 
-export default function Registration() {
+const Registration = (props) => {
   const [user, setUser] = useState(initialValues);
 
   const handleChange = e => {
@@ -18,6 +20,7 @@ export default function Registration() {
       ...user,
       [e.target.name]: e.target.value
     })
+    console.log(user);
   }
 
   const signUp = e => {
@@ -25,6 +28,7 @@ export default function Registration() {
     axios.post("https://anytime-fitness.herokuapp.com/api/auth/register", user)
       .then(res => {
         console.log("axios signup response: ", res);
+        props.history.push('/login');
       })
       .catch(err => {
         console.log(err);
@@ -91,3 +95,5 @@ export default function Registration() {
     </div>
   );
 }
+
+export default connect(null)(Registration);
