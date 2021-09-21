@@ -16,12 +16,12 @@ function App(props) {
         <nav>
           <div className="nav-links">
             <Link to="/">Home</Link>
+            <Link to="/classes">Classes</Link>
             {
               props.isLogin ?
                 <Link to="/logout">Logout</Link> :
                 <Link to="/login">Login</Link>
             }
-            <Link to="/classes">Classes</Link>
           </div>
         </nav>
       </header>
