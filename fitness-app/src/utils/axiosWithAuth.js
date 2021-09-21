@@ -1,5 +1,3 @@
-// will not use if headers is not required
-
 import axios from 'axios';
 
 const axiosWithAuth = () => {

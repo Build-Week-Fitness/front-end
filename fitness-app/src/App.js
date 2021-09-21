@@ -10,6 +10,8 @@ import Registration from "./components/Registration";
 import Home from "./components/Home";
 import ProtectedInstructorsRoute from "./components/ProtectedInstructorsRoute";
 import ClassesAdmin from "./components/ClassesAdmin";
+import EditForm from "./components/EditForm";
+import AddClass from "./components/AddClass";
 
 function App(props) {
   return (
@@ -19,7 +21,15 @@ function App(props) {
         <nav>
           <div className="nav-links">
             <Link to="/">Home</Link>
-            <Link to="/class">Classes</Link>
+            {
+              localStorage.getItem("role") === '0' && <Link to="/class">Classes</Link>
+            }
+            {
+              localStorage.getItem("role") === '1' && <Link to="/class-admin">View classes</Link>
+            }
+            {/* {
+              localStorage.getItem("role") === '1' && <Link to="/add-class">Add a class</Link>
+            } */}
             {
               props.isLogin ?
                 <Link to="/logout">Logout</Link> :
@@ -34,6 +44,10 @@ function App(props) {
         <ProtectedUsersRoute path="/class/:id" component={ClassDetails} />
 
         <ProtectedUsersRoute path="/class" component={Classes} />
+
+        <ProtectedInstructorsRoute path="/add-class" component={AddClass} />
+
+        <ProtectedInstructorsRoute path="/class-admin/edit-form/:id" component={EditForm} />
 
         <ProtectedInstructorsRoute path="/class-admin" component={ClassesAdmin} />
 
@@ -52,7 +66,7 @@ function App(props) {
 
 const mapStateToProps = (state) => {
   return ({
-    isLogin: state.loginReducer.isLogin
+    isLogin: state.loginReducer.isLogin,
   })
 }
 

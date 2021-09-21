@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getClasses, fetchFail } from '../actions';
-import Class from './Class';
+import ClassAdmin from './ClassAdmin';
 
 const ClassesAdmin = (props) => {
 
@@ -24,7 +24,7 @@ const ClassesAdmin = (props) => {
     return (
         <div className="classes-wrapper">
             <h2>This is a protected route for instructors</h2>
-            <Class classes={props.classes} />
+            <ClassAdmin classes={props.classes} />
         </div>
     )
 }
