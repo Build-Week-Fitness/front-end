@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 const initialValues = {
   name: "",
@@ -9,38 +9,40 @@ const initialValues = {
   username: "",
   password: "",
   role: 0,
-}
+};
 
 const Registration = (props) => {
   const [user, setUser] = useState(initialValues);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setUser({
       ...user,
-      [e.target.name]: e.target.value
-    })
+      [e.target.name]: e.target.value,
+    });
     console.log(user);
-  }
+  };
 
-  const signUp = e => {
+  const signUp = (e) => {
     e.preventDefault();
-    axios.post("https://anytime-fitness.herokuapp.com/api/auth/register", user)
-      .then(res => {
+    axios
+      .post("https://anytime-fitness.herokuapp.com/api/auth/register", user)
+      .then((res) => {
         console.log("axios signup response: ", res);
-        props.history.push('/login');
+        props.history.push("/login");
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
-      })
-  }
+      });
+  };
 
   return (
     <div className="form-wrapper">
       <div className="form-text-container">
         <h2>Create Your Account</h2>
-        <p>Already have an account?
+        <p>
+          Already have an account?
           <Link to="/login">
-            <button type='button' className='switch'>
+            <button type="button" className="switch">
               Login
             </button>
           </Link>
@@ -88,11 +90,13 @@ const Registration = (props) => {
               onChange={handleChange}
             />
           </label>
-          <button id="submit-login" type="submit">Sign Up</button>
+          <button id="submit-login" type="submit">
+            Sign Up
+          </button>
         </form>
       </div>
     </div>
   );
-}
+};
 
 export default connect(null)(Registration);
