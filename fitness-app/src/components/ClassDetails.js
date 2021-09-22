@@ -21,6 +21,7 @@ function ClassDetails(props) {
             <p>Max size: {item.max_capacity}</p>
             <p>Date: {item.date}</p>
             <p>Time: {item.start_time}</p>
+            <p>Duration: {item.duration} days</p>
             <Link to={`/class`}><button className="back-button">Back</button></Link>
         </div >
     )

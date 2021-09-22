@@ -24,7 +24,7 @@ const ClassesAdmin = (props) => {
     return (
         <div className="classes-wrapper">
             <h2>This is a protected route for instructors</h2>
-            <ClassAdmin classes={props.classes} />
+            <ClassAdmin />
         </div>
     )
 }

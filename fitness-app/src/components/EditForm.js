@@ -4,14 +4,14 @@ import axiosWithAuth from "./../utils/axiosWithAuth";
 
 const EditForm = (props) => {
     const initialValues = {
-        id: props.item.id,
         name: props.item.name,
-        instructor_name: props.item.instructor_name,
         type: props.item.type,
         intensity: props.item.intensity,
         location: props.item.location,
-        max_size: props.item.max_size,
+        maxSize: props.item.max_capacity,
         date: props.item.date,
+        time: props.item.start_time,
+        duration: props.item.duration,
     };
     const [editItem, setEditItem] = useState(initialValues);
     const history = useHistory();
@@ -27,12 +27,13 @@ const EditForm = (props) => {
         const updatedClass = {
             id: props.item.id,
             name: editItem.name.trim(),
-            instructor_name: editItem.instructor_name.trim(),
             type: editItem.type.trim(),
             intensity: editItem.intensity.trim(),
             location: editItem.location.trim(),
-            max_size: editItem.max_size.trim(),
+            max_size: editItem.maxSize.trim(),
             date: editItem.date.trim(),
+            time: editItem.time.trim(),
+            duration: editItem.duration.trim(),
         };
         axiosWithAuth()
             .put(`/api/auth/instructor/classes/${editItem.id}`, updatedClass)
@@ -82,16 +83,6 @@ const EditForm = (props) => {
                         />
                     </div>
                     <div className="form-group">
-                        <label>Instructor </label>
-                        <input
-                            value={editItem.instructor_name}
-                            onChange={onChange}
-                            name="instructor_name"
-                            type="text"
-                            className="form-control"
-                        />
-                    </div>
-                    <div className="form-group">
                         <label>Type </label>
                         <input
                             value={editItem.type}
@@ -112,7 +103,7 @@ const EditForm = (props) => {
                         />
                     </div>
                     <div className="form-group">
-                        <label>Location </label>
+                        <label>Loaction </label>
                         <input
                             value={editItem.location}
                             onChange={onChange}
@@ -122,9 +113,9 @@ const EditForm = (props) => {
                         />
                     </div>
                     <div className="form-group">
-                        <label>Max size </label>
+                        <label>Max Size </label>
                         <input
-                            value={editItem.max_size}
+                            value={editItem.maxSize}
                             onChange={onChange}
                             name="max_size"
                             type="text"
@@ -137,6 +128,26 @@ const EditForm = (props) => {
                             value={editItem.date}
                             onChange={onChange}
                             name="date"
+                            type="text"
+                            className="form-control"
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Time </label>
+                        <input
+                            value={editItem.time}
+                            onChange={onChange}
+                            name="time"
+                            type="text"
+                            className="form-control"
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Duration </label>
+                        <input
+                            value={editItem.duration}
+                            onChange={onChange}
+                            name="duration"
                             type="text"
                             className="form-control"
                         />

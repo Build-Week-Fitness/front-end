@@ -25,12 +25,14 @@ const Login = (props) => {
     axios.post("https://bw-anywhere-fitness-05.herokuapp.com/api/auth/login", user)
       .then(res => {
         setError('');
+        console.log("axios login response, ", res);
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("role", res.data.role);
         props.login(res.data.role);
-        if (res.data.role === "1") {
+        if (res.data.role) {
+          localStorage.setItem("role", 1);
           props.history.push('/class-admin');
         } else {
+          localStorage.setItem("role", 0);
           props.history.push('/class');
         }
       })
