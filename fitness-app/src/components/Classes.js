@@ -24,13 +24,14 @@ const Classes = (props) => {
     return (
         <div className="classes-wrapper">
             <h2>This is a protected route</h2>
-            <Class classes={props.classes} />
+            <Class />
         </div>
     )
 }
 
 const mapStateToProps = state => {
     return {
+        classes: state.classesReducer.classes,
         isFetching: state.classesReducer.isFetching,
         error: state.classesReducer.error,
     }

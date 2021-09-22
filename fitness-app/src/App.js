@@ -21,20 +21,18 @@ function App(props) {
         <nav>
           <div className="nav-links">
             <Link to="/">Home</Link>
-            {localStorage.getItem("role") === "0" && (
-              <Link to="/class">Classes</Link>
-            )}
-            {localStorage.getItem("role") === "1" && (
-              <Link to="/class-admin">View classes</Link>
-            )}
+            {
+              !props.isAdmin && <Link to="/class">Classes</Link>
+            }
+            {
+              props.isAdmin && <Link to="/class-admin">View classes</Link>
+            }
             {/* {
               localStorage.getItem("role") === '1' && <Link to="/add-class">Add a class</Link>
             } */}
-            {props.isLogin ? (
-              <Link to="/logout">Logout</Link>
-            ) : (
-              <Link to="/login">Login</Link>
-            )}
+            {
+              props.isLogin ? <Link to="/logout">Logout</Link> : <Link to="/login">Login</Link>
+            }
           </div>
         </nav>
       </header>
@@ -71,6 +69,7 @@ function App(props) {
 const mapStateToProps = (state) => {
   return {
     isLogin: state.loginReducer.isLogin,
+    isAdmin: state.loginReducer.isAdmin,
   };
 };
 

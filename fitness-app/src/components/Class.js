@@ -8,13 +8,14 @@ const Class = (props) => {
     return (
         <div className="classes-list">
             {props.classes ? props.classes.map(item => (
-                <div key={item.id} className="class-item">
-                    <Link to={`${url}/${item.id}`}>
-                        <h2>Name: <span>{item.name}</span></h2>
+                <div key={item.class_id} className="class-item">
+                    <Link to={`${url}/${item.class_id}`}>
+                        <h2><span>{item.name}</span></h2>
                     </Link>
-                    <p>Instructor: <span>{item.instructor_name}</span></p>
                     <p>Type: <span>{item.type}</span></p>
+                    <p>Location: {item.location}</p>
                     <p>Date: {item.date}</p>
+                    <p>Time: {item.start_time}</p>
                 </div>
             )) :
                 <h2>No classes are available</h2>}
