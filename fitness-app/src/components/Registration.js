@@ -4,11 +4,11 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const initialValues = {
-  name: "",
+  first_name: "",
+  last_name: "",
   email: "",
-  username: "",
   password: "",
-  role: 0,
+  // role: 0,
 };
 
 const Registration = (props) => {
@@ -19,13 +19,11 @@ const Registration = (props) => {
       ...user,
       [e.target.name]: e.target.value,
     });
-    console.log(user);
   };
 
   const signUp = (e) => {
     e.preventDefault();
-    axios
-      .post("https://anytime-fitness.herokuapp.com/api/auth/register", user)
+    axios.post("https://bw-anywhere-fitness-05.herokuapp.com/api/auth/register", user)
       .then((res) => {
         console.log("axios signup response: ", res);
         props.history.push("/login");
@@ -51,11 +49,21 @@ const Registration = (props) => {
       <div className="form-container">
         <form className="login-form" onSubmit={signUp}>
           <label>
-            Name
+            First Name
             <input
               type="text"
-              name="name"
-              placeholder="Enter Your Name"
+              name="first_name"
+              placeholder="Enter First Name"
+              max-characters="14"
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Last Name
+            <input
+              type="text"
+              name="last_name"
+              placeholder="Enter Last Name"
               max-characters="14"
               onChange={handleChange}
             />
@@ -65,17 +73,7 @@ const Registration = (props) => {
             <input
               type="email"
               name="email"
-              placeholder="Enter Your Email"
-              max-characters="14"
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            Username
-            <input
-              type="text"
-              name="username"
-              placeholder="Enter Username"
+              placeholder="Enter Email"
               max-characters="14"
               onChange={handleChange}
             />

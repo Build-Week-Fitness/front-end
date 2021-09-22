@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { login } from '../actions';
 
 const initialValues = {
-  username: "",
+  email: "",
   password: "",
 }
 
@@ -22,9 +22,8 @@ const Login = (props) => {
 
   const login = e => {
     e.preventDefault();
-    axios.post("https://anytime-fitness.herokuapp.com/api/auth/login", user)
+    axios.post("https://bw-anywhere-fitness-05.herokuapp.com/api/auth/login", user)
       .then(res => {
-        console.log(res)
         setError('');
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("role", res.data.role);
@@ -57,12 +56,12 @@ const Login = (props) => {
       <div className="form-container">
         <form className="login-form" onSubmit={login}>
           <label>
-            Username
+            Email
             <input
-              type="text"
-              name="username"
-              value={user.username}
-              placeholder="Enter Username"
+              type="email"
+              name="email"
+              value={user.email}
+              placeholder="Enter Email"
               max-characters="14"
               onChange={handleChange}
             />
