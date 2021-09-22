@@ -27,12 +27,13 @@ const Login = (props) => {
         setError('');
         console.log("axios login response, ", res);
         localStorage.setItem("token", res.data.token);
-        props.login(res.data.role);
         if (res.data.role) {
-          localStorage.setItem("role", 1);
+          localStorage.setItem("role", "i");
+          props.login("i");
           props.history.push('/class-admin');
         } else {
-          localStorage.setItem("role", 0);
+          localStorage.setItem("role", "u");
+          props.login("u");
           props.history.push('/class');
         }
       })

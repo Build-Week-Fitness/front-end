@@ -1,4 +1,5 @@
 import axiosWithAuth from './../utils/axiosWithAuth';
+// import classes from '../data/classes'
 
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';

@@ -1,15 +1,17 @@
 import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 
 const Class = (props) => {
     const { url } = useRouteMatch();
+    console.log("Class.js ", props.classes);
 
     return (
         <div className="classes-list">
             {props.classes ? props.classes.map(item => (
-                <div key={item.class_id} className="class-item">
-                    <Link to={`${url}/${item.class_id}`}>
+                <div key={uuidv4()} className="class-item">
+                    <Link to={`${url}/${item.name.trim()}`}>
                         <h2><span>{item.name}</span></h2>
                     </Link>
                     <p>Type: <span>{item.type}</span></p>

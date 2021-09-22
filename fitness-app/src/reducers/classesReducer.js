@@ -1,7 +1,8 @@
 import { FETCH_START, FETCH_SUCCESS, FETCH_FAIL } from '../actions';
+import classes from '../data/classes';
 
 const initialState = {
-    classes: [],
+    classes: classes,
     isFetching: false,
     error: ''
 };

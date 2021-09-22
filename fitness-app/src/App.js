@@ -22,10 +22,10 @@ function App(props) {
           <div className="nav-links">
             <Link to="/">Home</Link>
             {
-              !props.isAdmin && <Link to="/class">Classes</Link>
+              props.isAdmin === "u" || localStorage.getItem("role") === "u" ? <Link to="/class">Classes</Link> : null
             }
             {
-              props.isAdmin && <Link to="/class-admin">View classes</Link>
+              props.isAdmin === "i" || localStorage.getItem("role") === "i" ? <Link to="/class-admin">View classes</Link> : null
             }
             {/* {
               localStorage.getItem("role") === '1' && <Link to="/add-class">Add a class</Link>

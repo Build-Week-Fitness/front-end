@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
+// import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { getClasses, fetchFail } from '../actions';
 import ClassAdmin from './ClassAdmin';
 
 const ClassesAdmin = (props) => {
 
-    useEffect(() => {
-        props.getClasses();
-    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    // useEffect(() => {
+    //     props.getClasses();
+    // }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     if (props.error) {
         return <div className="classes-wrapper">
