@@ -22,10 +22,10 @@ function App(props) {
           <div className="nav-links">
             <Link to="/">Home</Link>
             {
-              localStorage.getItem("role") === "0" && <Link to="/class">Classes</Link>
+              !props.isAdmin && <Link to="/class">Classes</Link>
             }
             {
-              localStorage.getItem("role") === "1" && <Link to="/class-admin">View classes</Link>
+              props.isAdmin && <Link to="/class-admin">View classes</Link>
             }
             {/* {
               localStorage.getItem("role") === '1' && <Link to="/add-class">Add a class</Link>
@@ -69,6 +69,7 @@ function App(props) {
 const mapStateToProps = (state) => {
   return {
     isLogin: state.loginReducer.isLogin,
+    isAdmin: state.loginReducer.isAdmin,
   };
 };
 
