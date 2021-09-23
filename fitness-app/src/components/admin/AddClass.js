@@ -37,105 +37,108 @@ const AddClass = props => {
     }
 
     return (
-        <div className="form-wrapper">
-            <form onSubmit={onSubmit}>
-                <div className="form-body">
-                    <div className="form-group">
-                        <label>Name </label>
-                        <input
-                            value={newClass.name}
-                            onChange={onChange}
-                            name="name"
-                            type="text"
-                            className="form-control"
-                        />
+        <div className="addClass-wrapper">
+            <div className="form-wrapper-class">
+                <form onSubmit={onSubmit}>
+                    <div className="form-body">
+                        <div className="form-group">
+                            <label>Name </label>
+                            <input
+                                value={newClass.name}
+                                onChange={onChange}
+                                name="name"
+                                type="text"
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Instructor id </label>
+                            <input
+                                value={newClass.instructor_id}
+                                onChange={onChange}
+                                name="instructor_id"
+                                type="text"
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Type </label>
+                            <input
+                                value={newClass.type}
+                                onChange={onChange}
+                                name="type"
+                                type="text"
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Intensity </label>
+                            <input
+                                value={newClass.intensity}
+                                onChange={onChange}
+                                name="intensity"
+                                type="text"
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Loaction </label>
+                            <input
+                                value={newClass.location}
+                                onChange={onChange}
+                                name="location"
+                                type="text"
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Max Size </label>
+                            <input
+                                value={newClass.max_capacity}
+                                onChange={onChange}
+                                name="max_capacity"
+                                type="number"
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Date </label>
+                            <input
+                                value={newClass.date}
+                                onChange={onChange}
+                                name="date"
+                                type="text"
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Time </label>
+                            <input
+                                value={newClass.start_time}
+                                onChange={onChange}
+                                name="start_time"
+                                type="text"
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Duration </label>
+                            <input
+                                value={newClass.duration}
+                                onChange={onChange}
+                                name="duration"
+                                type="number"
+                                className="form-control"
+                            />
+                        </div>
                     </div>
-                    <div className="form-group">
-                        <label>Instructor id </label>
-                        <input
-                            value={newClass.instructor_id}
-                            onChange={onChange}
-                            name="instructor_id"
-                            type="text"
-                            className="form-control"
-                        />
+                    <div className="form-submit">
+                        <input type="submit" className="submit-btn" value="Add" />
                     </div>
-                    <div className="form-group">
-                        <label>Type </label>
-                        <input
-                            value={newClass.type}
-                            onChange={onChange}
-                            name="type"
-                            type="text"
-                            className="form-control"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Intensity </label>
-                        <input
-                            value={newClass.intensity}
-                            onChange={onChange}
-                            name="intensity"
-                            type="text"
-                            className="form-control"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Loaction </label>
-                        <input
-                            value={newClass.location}
-                            onChange={onChange}
-                            name="location"
-                            type="text"
-                            className="form-control"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Max Size </label>
-                        <input
-                            value={newClass.max_capacity}
-                            onChange={onChange}
-                            name="max_capacity"
-                            type="number"
-                            className="form-control"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Date </label>
-                        <input
-                            value={newClass.date}
-                            onChange={onChange}
-                            name="date"
-                            type="text"
-                            className="form-control"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Time </label>
-                        <input
-                            value={newClass.start_time}
-                            onChange={onChange}
-                            name="start_time"
-                            type="text"
-                            className="form-control"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Duration </label>
-                        <input
-                            value={newClass.duration}
-                            onChange={onChange}
-                            name="duration"
-                            type="number"
-                            className="form-control"
-                        />
-                    </div>
-                </div>
-                <div className="form-submit">
-                    <input type="submit" className="submit-btn" value="Add" />
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
+
     )
 }
 

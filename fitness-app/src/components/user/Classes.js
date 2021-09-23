@@ -19,7 +19,6 @@ const Classes = (props) => {
 
     return (
         <div className="classes-wrapper">
-            <h2>Welcome {props.email ? props.email : localStorage.getItem("email")}</h2>
             <Class />
         </div>
     )
@@ -30,7 +29,6 @@ const mapStateToProps = state => {
         classes: state.classesReducer.classes,
         isFetching: state.classesReducer.isFetching,
         error: state.classesReducer.error,
-        email: state.loginReducer.email,
     }
 }
 

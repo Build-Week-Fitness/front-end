@@ -56,7 +56,7 @@ function ClassDetails(props) {
 
     return (
         <div className="class-details-wrapper">
-            <h2>Name: <span>{item.name}</span></h2>
+            <h2><span>{item.name}</span></h2>
             <p>Type: <span>{item.type}</span></p>
             <p>Intensity: <span>{item.intensity}</span></p>
             <p>Location: <span>{item.location}</span></p>
@@ -64,10 +64,10 @@ function ClassDetails(props) {
             <p>Time: {item.start_time}</p>
             <p>Duration: {item.duration} days</p>
             <p>Reservation: {item.enrolled}/{item.max_capacity}</p>
-            <button onClick={handleReserve}>Reserve</button>
-            <Link to={`/class`}><button className="back-button">Back</button></Link>
-            {full && <p>This class is fully booked</p>}
-            {bookedMessage && <p>You have already booked this class</p>}
+            <button onClick={handleReserve} className="reserve-btn">Reserve</button>
+            <Link to={`/class`}><button className="back-btn">Back</button></Link>
+            {full && <p className="full-message">This class is fully booked</p>}
+            {bookedMessage && <p className="booked-message">You have already booked this class</p>}
         </div >
     )
 }

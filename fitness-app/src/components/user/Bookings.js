@@ -29,26 +29,30 @@ const Bookings = props => {
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
-        <div className="booking-container">
-            {
-                props.bookedClasses !== [] ? props.bookedClasses.map((item, index) => (
-                    <div key={index} className="booked-card">
-                        {
-                            (localStorage.getItem("email") === item.email) &&
-                            <div>
-                                <h2 onClick={() => handleDetails(item)}>{item.name}</h2>
-                                <p>{item.date}</p>
-                                <p>{item.start_time}</p>
-                                <div className="cancel-btn">
-                                    <button onClick={() => handleCancel(item)}>Cancel Class</button>
+        <div className="booking-wrapper">
+            <div className="booking-container">
+                {
+                    props.bookedClasses !== [] ? props.bookedClasses.map((item, index) => (
+                        <div key={index} >
+                            {
+                                (localStorage.getItem("email") === item.email) &&
+                                <div className="booked-card">
+                                    <h2 onClick={() => handleDetails(item)}>{item.name}</h2>
+                                    <p>{item.date}</p>
+                                    <p>{item.start_time}</p>
+                                    <h3>Status: booked</h3>
+                                    <div>
+                                        <button onClick={() => handleCancel(item)} className="cancel-btn">Cancel Class</button>
+                                    </div>
                                 </div>
-                            </div>
-                        }
+                            }
 
-                    </div>)) : <h2>No booked classes</h2>
-            }
+                        </div>)) : <h2 className="booking-message">No booked classes</h2>
+                }
+            </div>
+
             {
-                !booked && <h2>No booked classes</h2>
+                !booked && <h2 className="booking-message">No booked classes</h2>
             }
         </div>
     )

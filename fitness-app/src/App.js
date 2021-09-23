@@ -19,26 +19,34 @@ function App(props) {
     <div className="App">
       <header className="App-header">
         <h1>Anywhere Fitness</h1>
-        <nav>
-          <div className="nav-links">
-            <Link to="/">Home</Link>
-            {
-              props.role === "u" || localStorage.getItem("role") === "u" ? <Link to="/class">Classes</Link> : null
-            }
-            {
-              props.role === "u" || localStorage.getItem("role") === "u" ? <Link to="/bookings">Bookings</Link> : null
-            }
-            {
-              props.role === "i" || localStorage.getItem("role") === "i" ? <Link to="/add-class">Add a class</Link> : null
-            }
-            {
-              props.role === "i" || localStorage.getItem("role") === "i" ? <Link to="/class-admin">View classes</Link> : null
-            }
-            {
-              props.isLogin ? <Link to="/logout">Logout</Link> : <Link to="/login">Login</Link>
+        <div className="nav-bar">
+          <nav>
+            <div className="nav-links">
+              <Link to="/">Home</Link>
+              {
+                props.role === "u" || localStorage.getItem("role") === "u" ? <Link to="/class">Classes</Link> : null
+              }
+              {
+                props.role === "u" || localStorage.getItem("role") === "u" ? <Link to="/bookings">Bookings</Link> : null
+              }
+              {
+                props.role === "i" || localStorage.getItem("role") === "i" ? <Link to="/add-class">Add a class</Link> : null
+              }
+              {
+                props.role === "i" || localStorage.getItem("role") === "i" ? <Link to="/class-admin">View classes</Link> : null
+              }
+              {
+                props.isLogin ? <Link to="/logout">Logout</Link> : <Link to="/login">Login</Link>
+              }
+            </div>
+          </nav>
+          <div className="welcome">
+            {props.isLogin &&
+              <h2 className="welcome-message">Welcome {props.email ? props.email : localStorage.getItem("email")}</h2>
             }
           </div>
-        </nav>
+        </div>
+
       </header>
 
       <Switch>
@@ -76,6 +84,7 @@ const mapStateToProps = (state) => {
   return {
     isLogin: state.loginReducer.isLogin,
     role: state.loginReducer.role,
+    email: state.loginReducer.email,
   };
 };
 
