@@ -110,6 +110,7 @@ const Registration = (props) => {
               value={values.first_name}
               onChange={onChange}
             />
+            <p className="error-message">{formErrors.first_name}</p>
           </label>
           <label>
             Last Name
@@ -121,6 +122,7 @@ const Registration = (props) => {
               value={values.last_name}
               onChange={onChange}
             />
+            <p className="error-message">{formErrors.last_name}</p>
           </label>
           <label>
             Email
@@ -132,6 +134,7 @@ const Registration = (props) => {
               value={values.email}
               onChange={onChange}
             />
+            <p className="error-message">{formErrors.email}</p>
           </label>
           <label>
             Password
@@ -144,6 +147,7 @@ const Registration = (props) => {
               value={values.password}
             />
           </label>
+          <p className="error-message">{formErrors.password}</p>
           <button id="submit-login" type="submit" disabled={disabled}>
             Sign Up
           </button>
