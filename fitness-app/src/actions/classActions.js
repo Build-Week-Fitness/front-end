@@ -11,10 +11,8 @@ export const DELETE_CLASS = "DELETE_CLASS";
 export const getClasses = () => dispatch => {
     dispatch(fetchStart());
     axiosWithAuth()
-        // .get("/api/auth/users/classes")
         .get("/api/classes")
         .then(res => {
-            // dispatch(fetchSuccess(res.data));
             dispatch(fetchSuccess(res));
         })
         .catch(err => {

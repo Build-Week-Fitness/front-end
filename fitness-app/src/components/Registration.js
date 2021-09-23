@@ -18,7 +18,6 @@ const initialFormErrors = {
   last_name: "",
   email: "",
   password: "",
-  // role: "",
 };
 
 const schema = yup.object().shape({
@@ -35,6 +34,7 @@ const Registration = (props) => {
   const [values, setValues] = useState(initialValues);
   const [disabled, setDisabled] = useState(initialDisabled);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const [error, setError] = useState(false);
 
   const postNewUser = (newUser) => {
     axios
@@ -43,11 +43,11 @@ const Registration = (props) => {
         newUser
       )
       .then((res) => {
-        console.log("axios signup response: ", res);
         props.history.push("/login");
       })
       .catch((err) => {
         console.log(err);
+        setError(true);
       });
   };
 
@@ -78,7 +78,6 @@ const Registration = (props) => {
       password: values.password.trim(),
     };
     postNewUser(newUser);
-    console.log(newUser);
   };
 
   useEffect(() => {
@@ -148,6 +147,7 @@ const Registration = (props) => {
             />
           </label>
           <p className="error-message">{formErrors.password}</p>
+          {error && <p className="error-message">This email address has been registered</p>}
           <button id="submit-login" type="submit" disabled={disabled}>
             Sign Up
           </button>

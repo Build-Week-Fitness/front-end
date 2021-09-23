@@ -42,7 +42,7 @@ function App(props) {
           </nav>
           <div className="welcome">
             {props.isLogin &&
-              <h2 className="welcome-message">Welcome {props.email ? props.email : localStorage.getItem("email")}</h2>
+              <h2 className="welcome-message">Welcome, {props.email ? props.email : localStorage.getItem("email")}</h2>
             }
           </div>
         </div>

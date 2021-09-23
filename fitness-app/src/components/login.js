@@ -6,14 +6,6 @@ import { login, setEmail } from "../actions/loginActions";
 import * as yup from "yup";
 import { useEffect } from "react";
 
-// Admin account :
-// email: superadmin@gmail.com
-// email: johndoe@gmail.com
-// User account:
-// email: janedoe@gmail.com
-// email: bobbrown@gmail.com
-// email: annsmith@gmail.com
-
 const initialDisabled = true;
 const initialValues = {
   email: "",
