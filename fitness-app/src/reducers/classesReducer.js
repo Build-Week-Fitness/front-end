@@ -1,4 +1,4 @@
-import { FETCH_START, FETCH_SUCCESS, FETCH_FAIL, ADD_CLASS, EDIT_CLASS, DELETE_CLASS } from '../actions';
+import { FETCH_START, FETCH_SUCCESS, FETCH_FAIL, ADD_CLASS, EDIT_CLASS, DELETE_CLASS } from '../actions/classActions';
 import classes from '../data/classes';
 
 const initialState = {

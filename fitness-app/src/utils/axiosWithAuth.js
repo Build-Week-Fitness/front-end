@@ -7,7 +7,6 @@ const axiosWithAuth = () => {
         headers: {
             authorization: token
         },
-        // baseURL: 'https://anytime-fitness.herokuapp.com'
         baseURL: 'https://bw-anywhere-fitness-05.herokuapp.com'
     });
 }

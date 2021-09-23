@@ -1,8 +1,9 @@
-import { LOGIN, LOGOUT } from "../actions";
+import { LOGIN, LOGOUT, SET_EMAIL } from "../actions/loginActions";
 
 let initialState = {
     isLogin: false,
-    isAdmin: null,
+    role: null,
+    email: null,
 }
 
 if (localStorage.getItem("token")) {
@@ -18,14 +19,18 @@ export const loginReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLogin: true,
-                isAdmin: action.payload
+                role: action.payload
             };
         case LOGOUT:
-            console.log("LOGOUT ACTION");
             return {
                 ...state,
                 isLogin: action.payload,
-                isAdmin: null,
+                role: null,
+            }
+        case SET_EMAIL:
+            return {
+                ...state,
+                email: action.payload,
             }
         default:
             return state;

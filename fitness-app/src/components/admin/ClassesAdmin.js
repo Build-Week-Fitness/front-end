@@ -1,14 +1,9 @@
-// import React, { useEffect } from 'react';
 import React from 'react';
 import { connect } from 'react-redux';
-import { getClasses, fetchFail } from '../../actions';
+import { getClasses, fetchFail } from '../../actions/classActions';
 import ClassAdmin from './ClassAdmin';
 
 const ClassesAdmin = (props) => {
-
-    // useEffect(() => {
-    //     props.getClasses();
-    // }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     if (props.error) {
         return <div className="classes-wrapper">
@@ -24,7 +19,6 @@ const ClassesAdmin = (props) => {
 
     return (
         <div className="classes-wrapper">
-            <h2>This is a protected route for instructors</h2>
             <ClassAdmin />
         </div>
     )

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import { editClass, deleteClass } from '../../actions';
+import { editClass, deleteClass } from '../../actions/classActions';
+import { cancelClass } from '../../actions/reserveActions';
+import DeleteClassModal from "./DeleteClassModal";
 
 const EditForm = (props) => {
     const initialValues = {
@@ -18,6 +20,7 @@ const EditForm = (props) => {
         id: props.item.id,
     };
     const [editItem, setEditItem] = useState(initialValues);
+    const [showModal, setShowModal] = useState(false);
     const history = useHistory();
 
     const updateForm = (inputName, inputValue) => {
@@ -38,14 +41,37 @@ const EditForm = (props) => {
         history.push("/class-admin");
     };
 
-    const handleDelete = (e) => {
-        e.preventDefault();
+    // const handleDelete = (e) => {
+    //     e.preventDefault();
+    //     props.deleteClass(editItem.id);
+    //     props.bookedClasses.forEach((item) => {
+    //         if (item.id === editItem.id) {
+    //             props.cancelClass(item);
+    //         }
+    //     })
+    //     history.push("/class-admin");
+    // };
+
+    const handleDelete = () => {
+        setShowModal(true);
+    }
+
+    const handleYesFunc = () => {
         props.deleteClass(editItem.id);
+        props.bookedClasses.forEach((item) => {
+            if (item.id === editItem.id) {
+                props.cancelClass(item);
+            }
+        })
         history.push("/class-admin");
-    };
+    }
+
+    const handleNoFunc = () => {
+        setShowModal(false);
+    }
 
     return (
-        <div className="form-wrapper">
+        <div className="form-wrapper-class">
             <form onSubmit={onSubmit}>
                 <div className="form-body">
                     <div className="form-group">
@@ -139,15 +165,25 @@ const EditForm = (props) => {
                         />
                     </div>
                 </div>
-                <div className="form-submit">
-                    <input type="submit" className="submit-btn" value="Save" />
+                {showModal && <DeleteClassModal handleYesFunc={handleYesFunc} handleNoFunc={handleNoFunc} />}
+                <div className="edit-btns">
+                    <div className="form-submit">
+                        <input type="submit" className="submit-btn" value="Save" />
+                    </div>
+                    <div className="delete-class">
+                        <span onClick={handleDelete} className="delete-btn">Delete</span>
+                    </div>
                 </div>
-                <div className="delete-class">
-                    <button onClick={handleDelete}>Delete</button>
-                </div>
+
             </form>
         </div>
     );
 };
 
-export default connect(null, { editClass, deleteClass })(EditForm);
+const mapStateToProps = state => {
+    return {
+        bookedClasses: state.reserveReducer.bookedClasses,
+    }
+}
+
+export default connect(mapStateToProps, { editClass, deleteClass, cancelClass })(EditForm);
