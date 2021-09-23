@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 const classes = [
     {
         name: 'Power Yoga 1',
@@ -9,8 +11,8 @@ const classes = [
         location: 'Town Square',
         enrolled: 0,
         max_capacity: 30,
-        signed_in: 0,
         instructor_id: 1,
+        id: uuidv4(),
     },
     {
         name: 'Power Yoga 1.5',
@@ -22,8 +24,8 @@ const classes = [
         location: 'Terrace Park',
         enrolled: 5,
         max_capacity: 25,
-        signed_in: 0,
         instructor_id: 1,
+        id: uuidv4(),
     },
     {
         name: 'Zumba',
@@ -35,8 +37,8 @@ const classes = [
         location: 'Central Park',
         enrolled: 29,
         max_capacity: 45,
-        signed_in: 0,
         instructor_id: 2,
+        id: uuidv4(),
     },
     {
         name: 'HIIT',
@@ -48,8 +50,8 @@ const classes = [
         location: 'Sculpture Park',
         enrolled: 5,
         max_capacity: 15,
-        signed_in: 0,
         instructor_id: 2,
+        id: uuidv4(),
     },
     {
         name: 'Power Barre Express',
@@ -61,8 +63,8 @@ const classes = [
         location: 'Twin Lake',
         enrolled: 26,
         max_capacity: 30,
-        signed_in: 0,
         instructor_id: 2,
+        id: uuidv4(),
     },
 ];
 

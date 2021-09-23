@@ -1,7 +1,7 @@
 // import React, { useEffect } from 'react';
 import React from 'react';
 import { connect } from 'react-redux';
-import { getClasses, fetchFail } from '../actions';
+import { getClasses, fetchFail } from '../../actions';
 import ClassAdmin from './ClassAdmin';
 
 const ClassesAdmin = (props) => {

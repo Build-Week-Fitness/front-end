@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, useRouteMatch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import EditForm from './EditForm';
-import { v4 as uuidv4 } from 'uuid';
 
 const ClassAdmin = (props) => {
     const { url } = useRouteMatch();
@@ -10,8 +9,9 @@ const ClassAdmin = (props) => {
     return (
         <div className="classes-list">
             {props.classes ? props.classes.map(item => (
-                <div key={uuidv4()} className="class-item">
+                <div key={item.id} className="class-item">
                     <h2>Name: <span>{item.name}</span></h2>
+                    <p>Instructor id: {item.instructor_id}</p>
                     <p>Type: <span>{item.type}</span></p>
                     <p>Intensity: <span>{item.intensity}</span></p>
                     <p>Location: <span>{item.location}</span></p>

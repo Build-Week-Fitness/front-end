@@ -1,17 +1,17 @@
 import "./App.css";
 import { Link, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import ProtectedUsersRoute from "./components/ProtectedUsersRoute";
-import Classes from "./components/Classes";
-import ClassDetails from "./components/ClassDetails";
+import ProtectedUsersRoute from "./components/user/ProtectedUsersRoute";
+import Classes from "./components/user/Classes";
+import ClassDetails from "./components/user/ClassDetails";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import Registration from "./components/Registration";
 import Home from "./components/Home";
-import ProtectedInstructorsRoute from "./components/ProtectedInstructorsRoute";
-import ClassesAdmin from "./components/ClassesAdmin";
-import EditForm from "./components/EditForm";
-import AddClass from "./components/AddClass";
+import ProtectedInstructorsRoute from "./components/admin/ProtectedInstructorsRoute";
+import ClassesAdmin from "./components/admin/ClassesAdmin";
+import EditForm from "./components/admin/EditForm";
+import AddClass from "./components/admin/AddClass";
 
 function App(props) {
   return (
@@ -25,11 +25,11 @@ function App(props) {
               props.isAdmin === "u" || localStorage.getItem("role") === "u" ? <Link to="/class">Classes</Link> : null
             }
             {
+              props.isAdmin === "i" || localStorage.getItem("role") === "i" ? <Link to="/add-class">Add a class</Link> : null
+            }
+            {
               props.isAdmin === "i" || localStorage.getItem("role") === "i" ? <Link to="/class-admin">View classes</Link> : null
             }
-            {/* {
-              localStorage.getItem("role") === '1' && <Link to="/add-class">Add a class</Link>
-            } */}
             {
               props.isLogin ? <Link to="/logout">Logout</Link> : <Link to="/login">Login</Link>
             }

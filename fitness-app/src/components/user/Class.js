@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
 
 const Class = (props) => {
     const { url } = useRouteMatch();
@@ -10,7 +9,7 @@ const Class = (props) => {
     return (
         <div className="classes-list">
             {props.classes ? props.classes.map(item => (
-                <div key={uuidv4()} className="class-item">
+                <div key={item.id} className="class-item">
                     <Link to={`${url}/${item.name.trim()}`}>
                         <h2><span>{item.name}</span></h2>
                     </Link>

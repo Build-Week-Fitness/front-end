@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import axiosWithAuth from "./../utils/axiosWithAuth";
+import { connect } from "react-redux";
+import { editClass, deleteClass } from '../../actions';
 
 const EditForm = (props) => {
     const initialValues = {
@@ -8,10 +9,13 @@ const EditForm = (props) => {
         type: props.item.type,
         intensity: props.item.intensity,
         location: props.item.location,
-        maxSize: props.item.max_capacity,
+        max_capacity: props.item.max_capacity,
         date: props.item.date,
-        time: props.item.start_time,
+        start_time: props.item.start_time,
         duration: props.item.duration,
+        enrolled: props.item.enrolled,
+        instructor_id: props.item.instructor_id,
+        id: props.item.id,
     };
     const [editItem, setEditItem] = useState(initialValues);
     const history = useHistory();
@@ -23,28 +27,6 @@ const EditForm = (props) => {
         });
     };
 
-    const submitForm = (e) => {
-        const updatedClass = {
-            id: props.item.id,
-            name: editItem.name.trim(),
-            type: editItem.type.trim(),
-            intensity: editItem.intensity.trim(),
-            location: editItem.location.trim(),
-            max_size: editItem.maxSize.trim(),
-            date: editItem.date.trim(),
-            time: editItem.time.trim(),
-            duration: editItem.duration.trim(),
-        };
-        axiosWithAuth()
-            .put(`/api/auth/instructor/classes/${editItem.id}`, updatedClass)
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
-
     const onChange = (e) => {
         const { name, value } = e.target;
         updateForm(name, value);
@@ -52,20 +34,14 @@ const EditForm = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        submitForm();
+        props.editClass(editItem);
         history.push("/class-admin");
     };
 
-    const deleteClass = (e) => {
-        axiosWithAuth()
-            .delete(`/api/auth/instructor/classes/${editItem.id}`)
-            .then((res) => {
-                console.log(res);
-                history.push("/class-admin");
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+    const handleDelete = (e) => {
+        e.preventDefault();
+        props.deleteClass(editItem.id);
+        history.push("/class-admin");
     };
 
     return (
@@ -78,6 +54,16 @@ const EditForm = (props) => {
                             value={editItem.name}
                             onChange={onChange}
                             name="name"
+                            type="text"
+                            className="form-control"
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Instructor id </label>
+                        <input
+                            value={editItem.instructor_id}
+                            onChange={onChange}
+                            name="instructor_id"
                             type="text"
                             className="form-control"
                         />
@@ -115,10 +101,10 @@ const EditForm = (props) => {
                     <div className="form-group">
                         <label>Max Size </label>
                         <input
-                            value={editItem.maxSize}
+                            value={editItem.max_capacity}
                             onChange={onChange}
-                            name="max_size"
-                            type="text"
+                            name="max_capacity"
+                            type="number"
                             className="form-control"
                         />
                     </div>
@@ -135,9 +121,9 @@ const EditForm = (props) => {
                     <div className="form-group">
                         <label>Time </label>
                         <input
-                            value={editItem.time}
+                            value={editItem.start_time}
                             onChange={onChange}
-                            name="time"
+                            name="start_time"
                             type="text"
                             className="form-control"
                         />
@@ -148,7 +134,7 @@ const EditForm = (props) => {
                             value={editItem.duration}
                             onChange={onChange}
                             name="duration"
-                            type="text"
+                            type="number"
                             className="form-control"
                         />
                     </div>
@@ -157,11 +143,11 @@ const EditForm = (props) => {
                     <input type="submit" className="submit-btn" value="Save" />
                 </div>
                 <div className="delete-class">
-                    <button onClick={deleteClass}>Delete</button>
+                    <button onClick={handleDelete}>Delete</button>
                 </div>
             </form>
         </div>
     );
 };
 
-export default EditForm;
+export default connect(null, { editClass, deleteClass })(EditForm);

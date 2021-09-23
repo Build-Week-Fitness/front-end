@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getClasses, fetchFail } from '../actions';
+import { getClasses, fetchFail } from '../../actions';
 import Class from './Class';
 
 const Classes = (props) => {

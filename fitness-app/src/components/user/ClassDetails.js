@@ -22,6 +22,7 @@ function ClassDetails(props) {
             <p>Time: {item.start_time}</p>
             <p>Duration: {item.duration} days</p>
             <p>Reservation: {item.signed_in}/{item.max_capacity}</p>
+
             <Link to={`/class`}><button className="back-button">Back</button></Link>
         </div >
     )
