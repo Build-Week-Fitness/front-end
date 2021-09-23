@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getClasses, fetchFail } from '../actions';
+import { getClasses, fetchFail } from '../../actions';
 import Class from './Class';
 
 const Classes = (props) => {
 
-    useEffect(() => {
-        props.getClasses();
-    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    // useEffect(() => {
+    //     props.getClasses();
+    // }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     if (props.error) {
         return <div className="classes-wrapper">

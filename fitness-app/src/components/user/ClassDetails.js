@@ -8,7 +8,7 @@ function ClassDetails(props) {
     const { id } = useParams();
 
     useEffect(() => {
-        const find_item = props.classes.find(item => item.class_id === parseInt(id))
+        const find_item = props.classes.find(item => item.name.trim() === id)
         setItem(find_item);
     }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -18,10 +18,11 @@ function ClassDetails(props) {
             <p>Type: <span>{item.type}</span></p>
             <p>Intensity: <span>{item.intensity}</span></p>
             <p>Location: <span>{item.location}</span></p>
-            <p>Max size: {item.max_capacity}</p>
             <p>Date: {item.date}</p>
             <p>Time: {item.start_time}</p>
             <p>Duration: {item.duration} days</p>
+            <p>Reservation: {item.signed_in}/{item.max_capacity}</p>
+
             <Link to={`/class`}><button className="back-button">Back</button></Link>
         </div >
     )

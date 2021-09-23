@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-const ProtectedUsersRoute = ({ component: Component, ...rest }) => {
+const ProtectedInstructorsRoute = ({ component: Component, ...rest }) => {
     return <Route {...rest} render={(props) => {
-        if (localStorage.getItem("token")) {
+        if (localStorage.getItem("token") && localStorage.getItem("role") === "i") {
             return <Component {...props} />
         } else {
             return <Redirect to='/login' />
@@ -12,4 +12,4 @@ const ProtectedUsersRoute = ({ component: Component, ...rest }) => {
     }} />
 }
 
-export default ProtectedUsersRoute;
+export default ProtectedInstructorsRoute;

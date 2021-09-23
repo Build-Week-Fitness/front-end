@@ -9,8 +9,9 @@ const ClassAdmin = (props) => {
     return (
         <div className="classes-list">
             {props.classes ? props.classes.map(item => (
-                <div key={item.class_id} className="class-item">
+                <div key={item.id} className="class-item">
                     <h2>Name: <span>{item.name}</span></h2>
+                    <p>Instructor id: {item.instructor_id}</p>
                     <p>Type: <span>{item.type}</span></p>
                     <p>Intensity: <span>{item.intensity}</span></p>
                     <p>Location: <span>{item.location}</span></p>
@@ -18,8 +19,8 @@ const ClassAdmin = (props) => {
                     <p>Date: {item.date}</p>
                     <p>Time: {item.start_time}</p>
                     <p>Duration: {item.duration} days</p>
-                    <Link className="edit-btn" to={`${url}/edit-class/${item.id}`}>Edit</Link>
-                    <Route path={`${url}/edit-class/${item.id}`}>
+                    <Link className="edit-btn" to={`${url}/edit-class/${item.name.trim()}`}>Edit</Link>
+                    <Route path={`${url}/edit-class/${item.name.trim()}`}>
                         <EditForm item={item} />
                     </Route>
                 </div>
