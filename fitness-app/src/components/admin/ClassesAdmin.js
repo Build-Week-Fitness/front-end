@@ -19,7 +19,7 @@ const ClassesAdmin = (props) => {
 
     return (
         <div className="classes-wrapper">
-            <h2>This is a protected route for instructors</h2>
+            <h2>Welcome, {props.email}</h2>
             <ClassAdmin />
         </div>
     )
@@ -29,6 +29,7 @@ const mapStateToProps = state => {
     return {
         isFetching: state.classesReducer.isFetching,
         error: state.classesReducer.error,
+        email: state.loginReducer.email,
     }
 }
 

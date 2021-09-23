@@ -24,14 +24,15 @@ function ClassDetails(props) {
             let inlist = false;
             if (props.bookedClasses.length > 0) {
                 props.bookedClasses.forEach((element) => {
-                    if (element.id === item.id)
+                    if (element.id === item.id && localStorage.getItem("email") === element.email) {
                         inlist = true;
+                    }
                 })
             }
             if (inlist) {
                 setBookedMessage(true);
             } else {
-                props.reserveClass(item);
+                props.reserveClass({ ...item, email: localStorage.getItem("email") });
                 const updatedClass = {
                     name: item.name,
                     type: item.type,

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { editClass, deleteClass } from '../../actions/classActions';
+import { cancelClass } from '../../actions/reserveActions';
 
 const EditForm = (props) => {
     const initialValues = {
@@ -41,6 +42,11 @@ const EditForm = (props) => {
     const handleDelete = (e) => {
         e.preventDefault();
         props.deleteClass(editItem.id);
+        props.bookedClasses.forEach((item) => {
+            if (item.id === editItem.id) {
+                props.cancelClass(item);
+            }
+        })
         history.push("/class-admin");
     };
 
@@ -150,4 +156,10 @@ const EditForm = (props) => {
     );
 };
 
-export default connect(null, { editClass, deleteClass })(EditForm);
+const mapStateToProps = state => {
+    return {
+        bookedClasses: state.reserveReducer.bookedClasses,
+    }
+}
+
+export default connect(mapStateToProps, { editClass, deleteClass, cancelClass })(EditForm);

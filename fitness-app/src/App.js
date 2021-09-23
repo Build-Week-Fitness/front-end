@@ -23,16 +23,16 @@ function App(props) {
           <div className="nav-links">
             <Link to="/">Home</Link>
             {
-              props.isAdmin === "u" || localStorage.getItem("role") === "u" ? <Link to="/class">Classes</Link> : null
+              props.role === "u" || localStorage.getItem("role") === "u" ? <Link to="/class">Classes</Link> : null
             }
             {
-              props.isAdmin === "u" || localStorage.getItem("role") === "u" ? <Link to="/bookings">Bookings</Link> : null
+              props.role === "u" || localStorage.getItem("role") === "u" ? <Link to="/bookings">Bookings</Link> : null
             }
             {
-              props.isAdmin === "i" || localStorage.getItem("role") === "i" ? <Link to="/add-class">Add a class</Link> : null
+              props.role === "i" || localStorage.getItem("role") === "i" ? <Link to="/add-class">Add a class</Link> : null
             }
             {
-              props.isAdmin === "i" || localStorage.getItem("role") === "i" ? <Link to="/class-admin">View classes</Link> : null
+              props.role === "i" || localStorage.getItem("role") === "i" ? <Link to="/class-admin">View classes</Link> : null
             }
             {
               props.isLogin ? <Link to="/logout">Logout</Link> : <Link to="/login">Login</Link>
@@ -75,7 +75,7 @@ function App(props) {
 const mapStateToProps = (state) => {
   return {
     isLogin: state.loginReducer.isLogin,
-    isAdmin: state.loginReducer.isAdmin,
+    role: state.loginReducer.role,
   };
 };
 

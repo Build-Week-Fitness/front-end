@@ -5,6 +5,6 @@ export const reserveClass = (item) => {
     return ({ type: RESERVE_CLASS, payload: item });
 }
 
-export const cancelClass = (id) => {
-    return ({ type: CANCEL_CLASS, payload: id });
+export const cancelClass = (item) => {
+    return ({ type: CANCEL_CLASS, payload: item });
 }

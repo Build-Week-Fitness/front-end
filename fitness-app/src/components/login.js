@@ -2,9 +2,17 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { login } from "../actions/loginActions";
+import { login, setEmail } from "../actions/loginActions";
 import * as yup from "yup";
 import { useEffect } from "react";
+
+// Admin account :
+// email: superadmin@gmail.com
+// email: johndoe@gmail.com
+// User account:
+// email: janedoe@gmail.com
+// email: bobbrown@gmail.com
+// email: annsmith@gmail.com
 
 const initialDisabled = true;
 const initialValues = {
@@ -37,15 +45,18 @@ const Login = (props) => {
       )
       .then((res) => {
         setError("");
-        console.log("axios login response, ", res);
         localStorage.setItem("token", res.data.token);
         if (res.data.role) {
           localStorage.setItem("role", "i");
           props.login("i");
+          localStorage.setItem("email", values.email);
+          props.setEmail(values.email);
           props.history.push("/class-admin");
         } else {
           localStorage.setItem("role", "u");
           props.login("u");
+          localStorage.setItem("email", values.email);
+          props.setEmail(values.email);
           props.history.push("/class");
         }
       })
@@ -81,7 +92,6 @@ const Login = (props) => {
       password: values.password.trim(),
     };
     postNewUser(newUser);
-    console.log(newUser);
   };
 
   useEffect(() => {
@@ -137,4 +147,4 @@ const Login = (props) => {
   );
 };
 
-export default connect(null, { login })(Login);
+export default connect(null, { login, setEmail })(Login);

@@ -7,6 +7,7 @@ class Logout extends React.Component {
     componentDidMount() {
         localStorage.removeItem("token");
         localStorage.removeItem("role");
+        localStorage.removeItem("email");
         this.props.logout();
         this.props.history.push('/login');
     };

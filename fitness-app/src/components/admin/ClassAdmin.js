@@ -19,6 +19,7 @@ const ClassAdmin = (props) => {
                     <p>Date: {item.date}</p>
                     <p>Time: {item.start_time}</p>
                     <p>Duration: {item.duration} days</p>
+                    <p>Enrolled: {item.enrolled}</p>
                     <Link className="edit-btn" to={`${url}/edit-class/${item.name.trim()}`}>Edit</Link>
                     <Route path={`${url}/edit-class/${item.name.trim()}`}>
                         <EditForm item={item} />

@@ -15,7 +15,9 @@ export const reserveReducer = (state = initialState, action) => {
         case (CANCEL_CLASS): {
             return {
                 ...state,
-                bookedClasses: state.bookedClasses.filter(item => (action.payload !== item.id))
+                bookedClasses: state.bookedClasses.filter(item => (
+                    action.payload.email === item.email && action.payload.id !== item.id)
+                )
             }
         }
         default:

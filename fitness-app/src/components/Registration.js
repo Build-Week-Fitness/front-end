@@ -11,7 +11,7 @@ const initialValues = {
   last_name: "",
   email: "",
   password: "",
-  // role: 0,
+  role: 0,
 };
 const initialFormErrors = {
   first_name: "",
