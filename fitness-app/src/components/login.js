@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { login } from "../actions";
+import { login } from "../actions/loginActions";
 import * as yup from "yup";
 import { useEffect } from "react";
 

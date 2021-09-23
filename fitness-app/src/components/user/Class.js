@@ -4,13 +4,12 @@ import { connect } from 'react-redux';
 
 const Class = (props) => {
     const { url } = useRouteMatch();
-    console.log("Class.js ", props.classes);
 
     return (
         <div className="classes-list">
             {props.classes ? props.classes.map(item => (
                 <div key={item.id} className="class-item">
-                    <Link to={`${url}/${item.name.trim()}`}>
+                    <Link to={`${url}/${item.name}`}>
                         <h2><span>{item.name}</span></h2>
                     </Link>
                     <p>Type: <span>{item.type}</span></p>

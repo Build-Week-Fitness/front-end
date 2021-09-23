@@ -12,6 +12,7 @@ import ProtectedInstructorsRoute from "./components/admin/ProtectedInstructorsRo
 import ClassesAdmin from "./components/admin/ClassesAdmin";
 import EditForm from "./components/admin/EditForm";
 import AddClass from "./components/admin/AddClass";
+import Bookings from "./components/user/Bookings";
 
 function App(props) {
   return (
@@ -23,6 +24,9 @@ function App(props) {
             <Link to="/">Home</Link>
             {
               props.isAdmin === "u" || localStorage.getItem("role") === "u" ? <Link to="/class">Classes</Link> : null
+            }
+            {
+              props.isAdmin === "u" || localStorage.getItem("role") === "u" ? <Link to="/bookings">Bookings</Link> : null
             }
             {
               props.isAdmin === "i" || localStorage.getItem("role") === "i" ? <Link to="/add-class">Add a class</Link> : null
@@ -38,6 +42,8 @@ function App(props) {
       </header>
 
       <Switch>
+        <ProtectedUsersRoute path="/bookings" component={Bookings} />
+
         <ProtectedUsersRoute path="/class/:id" component={ClassDetails} />
 
         <ProtectedUsersRoute path="/class" component={Classes} />

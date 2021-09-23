@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT } from "../actions";
+import { LOGIN, LOGOUT } from "../actions/loginActions";
 
 let initialState = {
     isLogin: false,

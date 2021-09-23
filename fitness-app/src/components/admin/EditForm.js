@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import { editClass, deleteClass } from '../../actions';
+import { editClass, deleteClass } from '../../actions/classActions';
 
 const EditForm = (props) => {
     const initialValues = {

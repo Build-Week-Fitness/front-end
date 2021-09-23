@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import { addClass } from '../../actions';
+import { addClass } from '../../actions/classActions';
 import { v4 as uuidv4 } from 'uuid';
 
 const AddClass = props => {
@@ -24,8 +24,6 @@ const AddClass = props => {
 
     const onSubmit = e => {
         e.preventDefault();
-        // props.addClass(newClass);
-        console.log("newClass: ", newClass);
         props.addClass(newClass);
         history.push('/class-admin');
     }
@@ -36,7 +34,6 @@ const AddClass = props => {
             ...newClass,
             [name]: value,
         });
-        console.log("AddClass.js newClass: ", newClass);
     }
 
     return (
