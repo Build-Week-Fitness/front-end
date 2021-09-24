@@ -10,6 +10,7 @@ export default function Home() {
         <img
           src="https://content.active.com/Assets/Active.com+Content+Site+Digital+Assets/Fitness/Galleries/10+Fitness+Tips/Muscle-confusion-is-the-only-way-to-go..jpg"
           alt="class of people working out"
+          className="workout-class"
         />
         <p className="caption">
           These days, fitness classes can be held anywhere- a park, an
